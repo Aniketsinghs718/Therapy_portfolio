@@ -10,50 +10,35 @@ const SupportSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-terracotta-light/15 px-6 py-20 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Left Side - Image */}
-          <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <div className="relative aspect-[3/4] lg:aspect-[4/5] overflow-hidden">
-              <Image 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" 
-                alt="Peaceful woman looking up" 
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-
-          {/* Right Side - Text Content */}
-          <div className="w-full lg:w-1/2 space-y-8 order-1 lg:order-2 bg-sage-light/20 p-8 lg:p-12">
-            <h2 className="text-4xl lg:text-5xl font-display font-medium text-charcoal leading-tight">
-              You don't have to keep functioning on <em className="font-display italic font-light">empty</em>.
-            </h2>
-            
-            <p className="text-xl lg:text-2xl text-charcoal font-body leading-relaxed">
-              Therapy can help if you're experiencing:
-            </p>
-            
-            <ul className="space-y-4">
-              {challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-terracotta text-xl mt-1">•</span>
-                  <span className="text-lg lg:text-xl text-charcoal-light font-body leading-relaxed">
-                    {challenge}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <p className="text-lg lg:text-xl text-charcoal-light font-body leading-relaxed pt-4">
-              In our work together, we'll create a space to slow down, reconnect with yourself, and develop practical tools alongside deeper insight—so you can build resilience and a stronger relationship with yourself.
-            </p>
-          </div>
+    <div className="flex flex-col md:flex-row py-10 md:py-16">
+      <div className="w-full md:w-1/2 flex flex-col justify-between p-6 md:p-12 bg-[#f4f1e9]">
+        <div>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#2d4a2d] mb-4 md:mb-6">You don't have to keep functioning on <em className="font-light italic">empty</em>.</h1>
+          <p className="text-base md:text-lg text-[#2d4a2d] mb-3 md:mb-4">Therapy can help if you're experiencing:</p>
+          
+          <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+            {challenges.map((challenge, index) => (
+              <li key={index} className="flex items-start gap-2 md:gap-3">
+                <span className="text-[#d4735e] text-lg md:text-xl mt-1">•</span>
+                <span className="text-sm md:text-base text-[#2d4a2d]">
+                  {challenge}
+                </span>
+              </li>
+            ))}
+          </ul>
+          
+          <p className="text-base md:text-lg text-[#2d4a2d] mb-6 md:mb-8">In our work together, we'll create a space to slow down, reconnect with yourself, and develop practical tools alongside deeper insight—so you can build resilience and a stronger relationship with yourself.</p>
         </div>
+        <button className="text-sm font-medium text-[#2d4a2d] hover:underline self-start mt-4 md:mt-0">START THERAPY →</button>
       </div>
-    </section>
+      <div className="w-full md:w-1/2 h-64 md:h-auto">
+        <img 
+          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" 
+          alt="Peaceful woman" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
   );
 };
 

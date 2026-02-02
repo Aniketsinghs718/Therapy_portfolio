@@ -19,27 +19,43 @@ const HeroSection = () => {
         </nav>
 
         {/* Hero Content - Split Layout */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mt-16 lg:mt-20">
-          
-          {/* Left Side - Arched Window Image */}
-          <div className="w-full lg:w-1/2 flex justify-center">
-            <div className="relative w-full max-w-lg aspect-[3/4] overflow-hidden"
-                 style={{ clipPath: 'ellipse(20% 100% at 20% 100%)' }}>
-              
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-terracotta/20 to-sage/20 z-10" />
+        <div className="flex flex-col lg:flex-row items-center  lg:gap-20 mt-16 lg:mt-20">
+          <svg width="0" height="0" viewBox="0 0 100 140" aria-hidden>
+  <defs>
+    <clipPath id="archedWindow" clipPathUnits="objectBoundingBox">
+     <path
+    d="M0.827825 0.233206 C0.832592 0.339261 0.828317 0.309337 0.832592 0.392698 L0.834730 0.971956 C0.836867 0.976231 0.832592 0.980506 0.834730 0.995469 L0.167835 0.999744 C0.167835 1.001881 0.163560 0.999744 0.165698 0.999744 L0.174248 0.401248 C0.169973 0.341399 0.169973 0.292237 0.172175 0.233206 C0.187663 0.102409 0.328522 0.000000 0.500000 0.000000 C0.671478 0.000000 0.812337 0.102409 0.826180 0.221700 Z"
+    fill="black"
+  />
+      
+    </clipPath>
+  </defs>
+</svg>
 
-              {/* Image */}
-              <Image
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
-                alt="Dr. Maya Reynolds"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div>
-          </div>
+          {/* Left Side - Arched Window Image */}
+  <div className="w-full lg:w-1/2 flex justify-center">
+  <div
+    className="relative w-full max-w-lg aspect-[3/4]"
+    style={{
+      clipPath: "url(#archedWindow)",
+      WebkitClipPath: "url(#archedWindow)",
+    }}
+  >
+    {/* Gradient Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-terracotta/20 to-sage/20 z-10" />
+
+    {/* Image */}
+    <Image
+src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"      alt="Dr. Maya Reynolds"
+      fill
+      className="object-cover"
+      sizes=""
+      priority
+    />
+  </div>
+</div>
+
+
 
           {/* Right Side - Content Centered */}
           <div className="w-full lg:w-1/2 flex flex-col items-center justify-center text-center lg:px-8">

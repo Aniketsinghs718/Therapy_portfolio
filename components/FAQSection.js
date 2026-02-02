@@ -38,12 +38,28 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-white to-cream-50 px-6 py-20 lg:px-16">
+    <section className="min-h-screen bg-gradient-to-br from-white to-cream-50 px-4 md:px-6 py-12 md:py-20 lg:px-16">
+      <svg width="0" height="0" viewBox="0 0 100 140" aria-hidden>
+        <defs>
+          <clipPath id="archedWindowFAQ" clipPathUnits="objectBoundingBox">
+            <path
+              d="M0.827825 0.233206 C0.832592 0.339261 0.828317 0.309337 0.832592 0.392698 L0.834730 0.971956 C0.836867 0.976231 0.832592 0.980506 0.834730 0.995469 L0.167835 0.999744 C0.167835 1.001881 0.163560 0.999744 0.165698 0.999744 L0.174248 0.401248 C0.169973 0.341399 0.169973 0.292237 0.172175 0.233206 C0.187663 0.102409 0.328522 0.000000 0.500000 0.000000 C0.671478 0.000000 0.812337 0.102409 0.826180 0.221700 Z"
+              fill="black"
+            />
+          </clipPath>
+        </defs>
+      </svg>
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16">
-          {/* Left Side - Image with Arch Shape */}
-          <div className="w-full lg:w-1/2">
-            <div className="relative aspect-[3/4] overflow-hidden" style={{ clipPath: 'ellipse(50% 50% at 50% 50%)' }}>
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 md:gap-12 lg:gap-16">
+          {/* Left Side - Image with Arched Window Shape */}
+          <div className="w-full lg:w-1/2 flex justify-center">
+            <div
+              className="relative w-full max-w-lg aspect-[3/4]"
+              style={{
+                clipPath: "url(#archedWindowFAQ)",
+                WebkitClipPath: "url(#archedWindowFAQ)",
+              }}
+            >
               <Image 
                 src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80" 
                 alt="Lavender flowers" 
@@ -56,28 +72,28 @@ const FAQSection = () => {
 
           {/* Right Side - FAQs */}
           <div className="w-full lg:w-1/2">
-            <h2 className="text-4xl lg:text-5xl font-display font-medium text-charcoal mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal mb-8 md:mb-12">
               Common Questions
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {faqs.map((faq, index) => (
-                <div key={index} className="border-t border-charcoal/20 pt-6">
+                <div key={index} className="border-t border-charcoal/20 pt-4 md:pt-6">
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex justify-between items-start gap-4 text-left group"
+                    className="w-full flex justify-between items-start gap-3 md:gap-4 text-left group"
                   >
-                    <h3 className="text-2xl lg:text-3xl font-display font-medium text-charcoal group-hover:text-terracotta transition-colors">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-display font-medium text-charcoal group-hover:text-terracotta transition-colors">
                       {faq.question}
                     </h3>
-                    <span className="text-3xl text-terracotta flex-shrink-0 transition-transform duration-300" style={{ transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+                    <span className="text-2xl md:text-3xl text-terracotta flex-shrink-0 transition-transform duration-300" style={{ transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
                       +
                     </span>
                   </button>
                   
                   {openIndex === index && (
-                    <div className="mt-4 pr-12">
-                      <p className="text-lg text-charcoal-light font-body leading-relaxed">
+                    <div className="mt-3 md:mt-4 pr-8 md:pr-12">
+                      <p className="text-base md:text-lg text-charcoal-light font-body leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>

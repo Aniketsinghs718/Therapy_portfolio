@@ -29,30 +29,30 @@ const ProfessionalBackgroundSection = () => {
   };
 
   return (
-    <section className="min-h-screen bg-sage-light/30 px-6 py-20 lg:px-16">
+    <section className="min-h-screen bg-sage-light/30 px-4 md:px-6 py-12 md:py-20 lg:px-16">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl lg:text-5xl font-display font-medium text-charcoal text-center mb-16">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal text-center mb-12 md:mb-16">
           Professional Background
         </h2>
 
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
           {credentials.map((item, index) => (
-            <div key={index} className="border-t border-charcoal/20 pt-6">
+            <div key={index} className="border-t border-charcoal/20 pt-4 md:pt-6">
               <button
                 onClick={() => toggleItem(index)}
-                className="w-full flex justify-between items-center gap-4 text-left group"
+                className="w-full flex justify-between items-center gap-3 md:gap-4 text-left group"
               >
-                <h3 className="text-2xl lg:text-3xl font-body text-charcoal group-hover:text-sage transition-colors">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-body text-charcoal group-hover:text-sage transition-colors">
                   {item.title}
                 </h3>
-                <span className="text-3xl text-sage flex-shrink-0 transition-transform duration-300" style={{ transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+                <span className="text-2xl md:text-3xl text-sage flex-shrink-0 transition-transform duration-300" style={{ transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
                   +
                 </span>
               </button>
               
               {openIndex === index && (
-                <div className="mt-4 pr-12">
-                  <p className="text-lg text-charcoal-light font-body leading-relaxed">
+                <div className="mt-3 md:mt-4 pr-8 md:pr-12">
+                  <p className="text-base md:text-lg text-charcoal-light font-body leading-relaxed">
                     {item.content}
                   </p>
                 </div>
