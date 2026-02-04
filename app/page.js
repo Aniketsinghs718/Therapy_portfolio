@@ -3,6 +3,7 @@ import AboutSection from '@/components/AboutSection';
 import SpecialtiesSection from '@/components/SpecialtiesSection';
 import SupportSection from '@/components/SupportSection';
 import IntroSection from '@/components/IntroSection';
+import OurOfficeSection from '@/components/OurOfficeSection';
 import FAQSection from '@/components/FAQSection';
 import ProfessionalBackgroundSection from '@/components/ProfessionalBackgroundSection';
 import Footer from '@/components/Footer';
@@ -15,6 +16,7 @@ export default function Home() {
       <SpecialtiesSection />
       <SupportSection />
       <IntroSection />
+      <OurOfficeSection />
       <FAQSection />
       <ProfessionalBackgroundSection />
       <Footer />

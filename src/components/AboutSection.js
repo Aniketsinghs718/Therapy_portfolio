@@ -31,7 +31,7 @@ const AboutSection = () => {
           <div className="w-full lg:w-1/2">
             <div className="relative aspect-[4/3] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=800&q=80" 
+                src="https://images.pexels.com/photos/7468192/pexels-photo-7468192.jpeg" 
                 alt="Coffee cup with notebook and hat" 
                 className="w-full h-full object-cover"
               />

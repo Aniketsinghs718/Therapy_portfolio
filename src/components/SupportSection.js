@@ -17,7 +17,7 @@ const SupportSection = () => {
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
             <div className="relative aspect-[3/4] lg:aspect-[4/5] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" 
+                src="https://images.pexels.com/photos/7468192/pexels-photo-7468192.jpeg" 
                 alt="Peaceful woman looking up" 
                 className="w-full h-full object-cover"
               />

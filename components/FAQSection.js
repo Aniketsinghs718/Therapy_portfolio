@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import ScrollReveal from './ScrollReveal';
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -43,7 +44,7 @@ const FAQSection = () => {
         <defs>
           <clipPath id="archedWindowFAQ" clipPathUnits="objectBoundingBox">
             <path
-              d="M0.827825 0.233206 C0.832592 0.339261 0.828317 0.309337 0.832592 0.392698 L0.834730 0.971956 C0.836867 0.976231 0.832592 0.980506 0.834730 0.995469 L0.167835 0.999744 C0.167835 1.001881 0.163560 0.999744 0.165698 0.999744 L0.174248 0.401248 C0.169973 0.341399 0.169973 0.292237 0.172175 0.233206 C0.187663 0.102409 0.328522 0.000000 0.500000 0.000000 C0.671478 0.000000 0.812337 0.102409 0.826180 0.221700 Z"
+              d="M0.857287 0.139495 C0.943792 0.209906 0.998109 0.328599 1.000000 0.428023 L0.996385 1.525015 C1.000000 0.984102 0.979649 1.000000 0.996385 1.525015 L0.000684 1.529032 C0.020351 1.000000 0.000000 0.984102 0.000684 1.525232 L0.000000 0.428023 C0.000000 0.338976 0.052587 0.248129 0.116963 0.167659 C0.181339 0.099260 0.302619 0.015341 0.509254 0.008731 C0.674217 0.006719 0.812337 0.102409 0.859298 0.139495 Z"
               fill="black"
             />
           </clipPath>
@@ -52,7 +53,7 @@ const FAQSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 md:gap-12 lg:gap-16">
           {/* Left Side - Image with Arched Window Shape */}
-          <div className="w-full lg:w-1/2 flex justify-center">
+          <ScrollReveal className="w-full lg:w-1/2 flex justify-center" delay={100}>
             <div
               className="relative w-full max-w-lg aspect-[3/4]"
               style={{
@@ -68,10 +69,10 @@ const FAQSection = () => {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Side - FAQs */}
-          <div className="w-full lg:w-1/2">
+          <ScrollReveal className="w-full lg:w-1/2" delay={300}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal mb-8 md:mb-12">
               Common Questions
             </h2>
@@ -101,7 +102,7 @@ const FAQSection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -30,7 +30,7 @@ const IntroSection = () => {
               <div className="absolute top-0 right-0 w-3/4 h-3/4" style={{ clipPath: 'circle(50% at 50% 50%)' }}>
                 <div className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-50 rounded-full overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80" 
+                    src="https://drive.google.com/file/d/1koVGhvD8mkiRXRukqrklo0HbB48p9PIa/view?usp=drive_link" 
                     alt="Beautiful lilac flowers" 
                     className="w-full h-full object-cover"
                   />
