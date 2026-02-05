@@ -1,4 +1,4 @@
-# Lilac Therapy Website
+# Therapy Website
 
 A beautiful, modern therapy website built with Next.js 14 and Tailwind CSS.
 
