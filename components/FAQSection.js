@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import ScrollReveal from './ScrollReveal';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, Minus } from 'lucide-react';
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -39,70 +40,117 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-white to-cream-50 px-4 md:px-6 py-12 md:py-20 lg:px-16">
-      <svg width="0" height="0" viewBox="0 0 100 140" aria-hidden>
-        <defs>
-          <clipPath id="archedWindowFAQ" clipPathUnits="objectBoundingBox">
-            <path
-              d="M0.857287 0.139495 C0.943792 0.209906 0.998109 0.328599 1.000000 0.428023 L0.996385 1.525015 C1.000000 0.984102 0.979649 1.000000 0.996385 1.525015 L0.000684 1.529032 C0.020351 1.000000 0.000000 0.984102 0.000684 1.525232 L0.000000 0.428023 C0.000000 0.338976 0.052587 0.248129 0.116963 0.167659 C0.181339 0.099260 0.302619 0.015341 0.509254 0.008731 C0.674217 0.006719 0.812337 0.102409 0.859298 0.139495 Z"
-              fill="black"
-            />
-          </clipPath>
-        </defs>
-      </svg>
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 md:gap-12 lg:gap-16">
+    <section className="py-24 md:py-32 bg-gradient-to-br from-white to-cream-50 relative overflow-hidden">
+
+      {/* Decorative Blur */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-terracotta/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
+
           {/* Left Side - Image with Arched Window Shape */}
-          <ScrollReveal className="w-full lg:w-1/2 flex justify-center" delay={100}>
-            <div
-              className="relative w-full max-w-lg aspect-[3/4]"
-              style={{
-                clipPath: "url(#archedWindowFAQ)",
-                WebkitClipPath: "url(#archedWindowFAQ)",
-              }}
-            >
-              <Image 
-                src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80" 
-                alt="Lavender flowers" 
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full lg:w-5/12 flex justify-center lg:sticky lg:top-32"
+          >
+            <div className="relative w-full max-w-[400px] aspect-[3/4]">
+              <svg width="0" height="0" viewBox="0 0 100 140" aria-hidden="true" className="absolute">
+                <defs>
+                  <clipPath id="archedWindowFAQ" clipPathUnits="objectBoundingBox">
+                    <path d="M0.857 0.139 C0.944 0.210 0.998 0.329 1.000 0.428 L0.996 1.525 C1.000 0.984 0.980 1.000 0.996 1.525 L0.001 1.529 C0.020 1.000 0.000 0.984 0.001 1.525 L0.000 0.428 C0.000 0.339 0.053 0.248 0.117 0.168 C0.181 0.099 0.303 0.015 0.509 0.009 C0.674 0.007 0.812 0.102 0.857 0.139 Z" />
+                  </clipPath>
+                </defs>
+              </svg>
+
+              <div
+                className="absolute inset-0 translate-x-4 translate-y-4 bg-terracotta-light/20"
+                style={{ clipPath: "url(#archedWindowFAQ)", WebkitClipPath: "url(#archedWindowFAQ)" }}
               />
+
+              <div
+                className="relative w-full h-full shadow-2xl overflow-hidden"
+                style={{
+                  clipPath: "url(#archedWindowFAQ)",
+                  WebkitClipPath: "url(#archedWindowFAQ)",
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent mix-blend-overlay z-10" />
+                <Image
+                  src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80"
+                  alt="Lavender flowers"
+                  fill
+                  className="object-cover scale-105 hover:scale-110 transition-transform duration-1000 ease-out"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
-          </ScrollReveal>
+          </motion.div>
 
           {/* Right Side - FAQs */}
-          <ScrollReveal className="w-full lg:w-1/2" delay={300}>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal mb-8 md:mb-12">
-              Common Questions
-            </h2>
+          <div className="w-full lg:w-7/12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal mb-4 lg:mb-6">
+                Common Questions
+              </h2>
+              <p className="text-lg text-charcoal/70 font-body mb-8 md:mb-12">
+                Find answers to frequent questions about my practice, approach, and how we can work together.
+              </p>
+            </motion.div>
 
-            <div className="space-y-4 md:space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="border-t border-charcoal/20 pt-4 md:pt-6">
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full flex justify-between items-start gap-3 md:gap-4 text-left group"
+            <div className="space-y-4">
+              {faqs.map((faq, index) => {
+                const isOpen = openIndex === index;
+
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    key={index}
+                    className={`border ${isOpen ? 'border-terracotta/30 bg-white shadow-md' : 'border-charcoal/10 hover:border-charcoal/20 bg-white/50'} rounded-2xl overflow-hidden transition-all duration-300`}
                   >
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-display font-medium text-charcoal group-hover:text-terracotta transition-colors">
-                      {faq.question}
-                    </h3>
-                    <span className="text-2xl md:text-3xl text-terracotta flex-shrink-0 transition-transform duration-300" style={{ transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-                      +
-                    </span>
-                  </button>
-                  
-                  {openIndex === index && (
-                    <div className="mt-3 md:mt-4 pr-8 md:pr-12">
-                      <p className="text-base md:text-lg text-charcoal-light font-body leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className="w-full px-6 py-5 flex justify-between items-center gap-4 text-left group"
+                    >
+                      <h3 className={`text-lg md:text-xl font-display font-medium ${isOpen ? 'text-terracotta' : 'text-charcoal group-hover:text-terracotta'} transition-colors pr-8`}>
+                        {faq.question}
+                      </h3>
+                      <div className={`shrink-0 flex items-center justify-center w-8 h-8 rounded-full ${isOpen ? 'bg-terracotta text-white' : 'bg-cream-100 text-charcoal group-hover:bg-terracotta/10 group-hover:text-terracotta'} transition-colors duration-300`}>
+                        {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      </div>
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                          <div className="px-6 pb-6 pr-12">
+                            <p className="text-base text-charcoal/80 font-body leading-relaxed">
+                              {faq.answer}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>

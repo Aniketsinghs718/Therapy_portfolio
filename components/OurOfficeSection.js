@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import ScrollReveal from './ScrollReveal';
+import { motion } from 'framer-motion';
+import { MapPin, Navigation } from 'lucide-react';
 
 const OurOfficeSection = () => {
   const officeImages = [
@@ -19,72 +20,111 @@ const OurOfficeSection = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
   return (
-    <section className="min-h-screen bg-white px-4 md:px-6 py-12 md:py-20 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        
+    <section className="py-24 md:py-32 bg-white relative">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
+
         {/* Section Title */}
-        <ScrollReveal>
-          <div className="text-center mb-12 md:mb-16 lg:mb-20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal mb-6 md:mb-8">
-              A Calm Space for Healing
-            </h2>
-            <p className="text-base md:text-lg lg:text-xl text-charcoal-light font-body leading-relaxed max-w-3xl mx-auto px-4">
-              My office in Santa Monica offers a warm, private environment where you can feel safe to explore, process, and heal. Natural light, comfortable seating, and a serene atmosphere create the right setting for genuine connection and growth.
-            </p>
-          </div>
-        </ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-3xl mx-auto mb-16 md:mb-24"
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal mb-6 md:mb-8">
+            A Calm Space for Healing
+          </h2>
+          <p className="text-lg text-charcoal/80 font-body leading-relaxed">
+            My office in Santa Monica offers a warm, private environment where you can feel safe to explore, process, and heal. Natural light, comfortable seating, and a serene atmosphere create the right setting for genuine connection and growth.
+          </p>
+        </motion.div>
 
         {/* Office Images Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-20"
+        >
           {officeImages.map((image, index) => (
-            <ScrollReveal key={index} delay={index * 150}>
-              <div className="relative aspect-[4/5] overflow-hidden group">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                {/* Subtle overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            </ScrollReveal>
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-md group"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              {/* Subtle overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Office Details */}
-        <ScrollReveal delay={300}>
-          <div className="bg-cream-50 p-6 md:p-10 lg:p-12 text-center">
-            <div className="max-w-2xl mx-auto space-y-4 md:space-y-6">
-              <h3 className="text-2xl md:text-3xl font-display font-medium text-charcoal mb-4 md:mb-6">
-                Visit Our Office
-              </h3>
-              
-              <div className="space-y-3 text-base md:text-lg text-charcoal-light font-body">
-                <p className="flex items-center justify-center gap-3">
-                  <svg className="w-5 h-5 md:w-6 md:h-6 text-terracotta flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>123th Street 45 W, Santa Monica, CA 90401</span>
-                </p>
-                
-                <p className="text-charcoal-light leading-relaxed mt-4 md:mt-6">
-                  Conveniently located in Santa Monica with easy parking. I offer both in-person sessions at my office and secure telehealth options for clients throughout California.
-                </p>
-              </div>
+        {/* Office Details Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative rounded-3xl overflow-hidden bg-sage-light/10 border border-sage/20 p-8 md:p-12 lg:p-16 text-center shadow-sm"
+        >
+          {/* Decorative Corner Backgrounds */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-sage/5 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-cream-200/50 rounded-full blur-[50px] translate-y-1/2 -translate-x-1/2" />
 
-              <button className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-sage text-white font-medium text-sm md:text-base hover:bg-sage-dark hover:scale-105 transition-all duration-300 uppercase tracking-wider shadow-lg hover:shadow-xl mt-6 md:mt-8">
-                GET DIRECTIONS
-                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                </svg>
+          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+            <h3 className="text-2xl md:text-3xl font-display font-medium text-charcoal mb-8">
+              Visit Our Office
+            </h3>
+
+            <div className="space-y-4 text-charcoal/80 font-body">
+              <p className="flex items-center justify-center gap-3 text-lg font-medium text-charcoal">
+                <MapPin className="w-5 h-5 text-terracotta shrink-0" />
+                123th Street 45 W, Santa Monica, CA 90401
+              </p>
+
+              <p className="leading-relaxed">
+                Conveniently located in Santa Monica with easy parking. I offer both in-person sessions at my office and secure telehealth options for clients throughout California.
+              </p>
+            </div>
+
+            <div className="pt-6">
+              <button className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-sage text-white font-medium text-base rounded-full overflow-hidden transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-sage/20">
+                <span className="relative z-10 flex items-center gap-2">
+                  <Navigation className="w-4 h-4" />
+                  Get Directions
+                </span>
+                <div className="absolute inset-0 bg-sage-dark translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
               </button>
             </div>
           </div>
-        </ScrollReveal>
+        </motion.div>
 
       </div>
     </section>

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import ScrollReveal from './ScrollReveal';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, Minus, Award } from 'lucide-react';
 
 const ProfessionalBackgroundSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -30,40 +31,72 @@ const ProfessionalBackgroundSection = () => {
   };
 
   return (
-    <section className="min-h-screen bg-sage-light/30 px-4 md:px-6 py-12 md:py-20 lg:px-16">
-      <div className="max-w-4xl mx-auto">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal text-center mb-12 md:mb-16">
+    <section className="py-24 md:py-32 bg-cream-50 relative overflow-hidden">
+      {/* Decorative large icon background */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 opacity-[0.03] pointer-events-none">
+        <Award className="w-[800px] h-[800px] text-sage-dark" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 md:px-8 lg:px-16 position-relative z-10">
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 md:mb-20"
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-charcoal mb-6">
             Professional Background
           </h2>
-        </ScrollReveal>
+          <div className="w-24 h-1 bg-terracotta/30 mx-auto rounded-full" />
+        </motion.div>
 
         <div className="space-y-4 md:space-y-6">
-          {credentials.map((item, index) => (
-            <ScrollReveal key={index} delay={index * 100}>
-              <div className="border-t border-charcoal/20 pt-4 md:pt-6">
-              <button
-                onClick={() => toggleItem(index)}
-                className="w-full flex justify-between items-center gap-3 md:gap-4 text-left group"
+          {credentials.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'shadow-md border border-sage/30' : 'shadow-sm border border-cream-200 hover:border-sage/50'}`}
               >
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-body text-charcoal group-hover:text-sage transition-colors">
-                  {item.title}
-                </h3>
-                <span className="text-2xl md:text-3xl text-sage flex-shrink-0 transition-transform duration-300" style={{ transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-                  +
-                </span>
-              </button>
-              
-              {openIndex === index && (
-                <div className="mt-3 md:mt-4 pr-8 md:pr-12">
-                  <p className="text-base md:text-lg text-charcoal-light font-body leading-relaxed">
-                    {item.content}
-                  </p>
+                <div className="pt-2 md:pt-3">
+                  <button
+                    onClick={() => toggleItem(index)}
+                    className="w-full px-6 md:px-8 py-5 flex justify-between items-center gap-4 text-left group"
+                  >
+                    <h3 className={`text-xl md:text-2xl font-display font-medium transition-colors ${isOpen ? 'text-sage-dark' : 'text-charcoal group-hover:text-sage-dark'}`}>
+                      {item.title}
+                    </h3>
+                    <div className={`shrink-0 flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-300 ${isOpen ? 'bg-sage text-white' : 'bg-sage-light/20 text-sage-dark group-hover:bg-sage/20'}`}>
+                      {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <div className="px-6 md:px-8 pb-8 pr-12 md:pr-16">
+                          <p className="text-base md:text-lg text-charcoal/80 font-body leading-relaxed">
+                            {item.content}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              )}
-            </div>
-            </ScrollReveal>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
